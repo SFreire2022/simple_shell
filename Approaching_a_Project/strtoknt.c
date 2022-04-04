@@ -20,7 +20,7 @@ int main(void)
 	{
 		if (str[j] != '\0')
 			printf("%c", str[j]);
-		else
+		else if (str[j - 1] != '\0' && str[j] == '\0')
 			printf("\n");
 	}
 	printf("\n");
