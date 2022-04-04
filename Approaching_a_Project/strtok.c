@@ -5,9 +5,9 @@
  * main - Main program to tokenize args from comand line
  * Return: if ok return 0.
  */
-int main(void)
+int main(__attribute__((unused))int ac, char **av)
 {
-	char str[] = "Simple Shell Project by Martín and Seba";
+	char *str = av[1];
 
     /* Returns first token* */
 	char *token = strtok(str, " ");
