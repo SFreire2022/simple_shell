@@ -1,1 +1,16 @@
-# Test file
+.TH man_1_simple_shell "april 12th 2022" "version 1.0" "simple shell manual"
+
+.SH NAME
+.B simple shell
+- a standard command interpreter that reads commands from standard input and executes them.
+
+.SH SYNOPSIS
+
+.SH DESCRIPTION
+
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Made by Martín De Francesco and Sebastián Freire
