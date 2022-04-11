@@ -8,9 +8,9 @@
  * Return: 0
  */
 
-int main(int argc, char *argv[])
+int main(int __attribute__((unused))argc, char __attribute__((unused))*argv[])
 {
-	char *my_env_var = getenv("MY_ENV_VAR");
+	char *my_env_var = getenv("PATH");
 
 	if (my_env_var)
 		printf("Var found: %s", my_env_var);
