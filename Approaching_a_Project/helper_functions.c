@@ -143,12 +143,14 @@ char *chk_command(char *command)
 		if (stat(string, &st) == 0)
 		{
 			flag = 1;
+			free(path);
 			return (&string);
 		}
 	}
 	if (flag == 0)
 	{
 		free(string);
+		free(path);
 		return (NULL);
 	}
 }
