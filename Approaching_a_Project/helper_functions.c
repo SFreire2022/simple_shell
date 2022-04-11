@@ -99,7 +99,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
  * @clon_av: array of command and arguments.
  * Return: 0 if ok.
  */
-int chk_fork_execve(char **clon_av)
+char *chk_fork_execve(char **clon_av)
 {
 	pid_t pid;
 	int status;
@@ -115,11 +115,10 @@ int chk_fork_execve(char **clon_av)
 		{
 			if (execve(string, clon_av, environ) == -1)
 				dprintf(STDERR_FILENO, "%s: command not found", clon_av[0]);
-
 		}
 		wait(&status);
 	}
-	return (0);
+	return (&string);
 }
 
 /**

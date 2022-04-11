@@ -15,6 +15,7 @@ void check_mode(ssize_t nread);
 void sig_trap(int sig);
 void print_prompt(void);
 char **input_tokenizer(char *line, ssize_t nread, char *sep);
-int chk_fork_execve(char **clon_av);
+char *chk_fork_execve(char **clon_av);
+char *chk_command(char *command);
 
 #endif
