@@ -113,7 +113,7 @@ char *chk_fork_execve(char **clon_av)
 		pid = fork();
 		if (pid == 0)
 		{
-			if (execve(string, clon_av, environ) == -1)
+			if (execve(string, clon_av, envp) == -1)
 				dprintf(STDERR_FILENO, "%s: command not found", clon_av[0]);
 		}
 		wait(&status);
@@ -152,5 +152,28 @@ char *chk_command(char *command)
 		free(string);
 		free(path);
 		return (NULL);
+	}
+}
+
+/**
+ * chk_builtin - Function to check command
+ * @clon_av: array to be freed if first element is == exit.
+ * @line: string to be freed if command is exit.
+ * @envp: Array of environment vars.
+ */
+void chk_builtin(char **clon_av, char *line, char **envp)
+{
+	int i = 0;
+
+	if (strcmp(clon_av[0], "exit") == 0)
+	{
+		free(line);
+		free(clon_av);
+		exit(EXIT_SUCCESS);
+	}
+	if (strcmp(clon_av[0], "env") == 0)
+	{
+		for (i = 0; envp[i]; i++)
+			dprintf(STDERR_FILENO, "%s\n", envp[i]);
 	}
 }

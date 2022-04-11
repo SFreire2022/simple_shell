@@ -4,10 +4,10 @@
  * main - Main program to get args from comand line or stdin
  * @ac: argument counter.
  * @av: argument vector (strings array).
- * @env: array of environment vars.
+ * @envp: array of environment vars.
  * Return: if ok return 0.
  */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av, char **envp)
 {
 	char *line = NULL, *string = NULL;
 	size_t len = 0;
@@ -33,6 +33,8 @@ int main(int ac, char **av, char **env)
 			signal(SIGINT, sig_trap);
 			/* proces input */
 			clon_av = input_tokenizer(&line, nread, " ");
+			/* chk builtin cmd */
+			chk_builtin(clon_av[0], line, envp);
 			/* Check comand and fork and execve */
 			string = chk_fork_execve(&clon_av);
 			/* clean memory */
