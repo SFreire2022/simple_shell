@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 /**
  * main - main
- * Return - child and parent process id's
+ * Return: child and parent process id's
  */
 int main(void)
 {
