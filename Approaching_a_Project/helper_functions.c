@@ -99,7 +99,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
  * @clon_av: array of command and arguments.
  * Return: 0 if ok.
  */
-char *chk_fork_execve(char **clon_av)
+char *chk_fork_execve(char **clon_av, char **envp)
 {
 	pid_t pid;
 	int status;

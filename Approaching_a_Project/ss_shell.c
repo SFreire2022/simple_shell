@@ -35,7 +35,7 @@ int main(int ac, __attribute__((unused))char **av, char **envp)
 			/* chk builtin cmd */
 			chk_builtin(clon_av, line, envp);
 			/* Check comand and fork and execve */
-			string = chk_fork_execve(clon_av);
+			string = chk_fork_execve(clon_av, envp);
 			/* clean memory */
 			free(line);
 			free(clon_av);
