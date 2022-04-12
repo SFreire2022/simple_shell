@@ -55,11 +55,11 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 	char **clon_av = NULL;
 	ssize_t i = 0, j = 0;
 
-	for (i = 0; i < nread; i++)
+	for (i = 0; i <= nread; i++)
 	{
 		if (*(line + i) == sep[0])
 			*(line + i) = '\0';
-		if (i == nread)
+		if (i == nread - 1)
 			*(line + i) = '\0';
 	}
 	for (j = 1, i = 1; i <= nread; i++)
@@ -75,8 +75,8 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 		dprintf(2, "Error allocating memory for array of arguments\n");
 		return (clon_av);
 	}
-	clon_av[j + 1] = NULL;
-	for (j = 0, i = 1; i < nread; i++)
+	clon_av[j + 1] = (void *);
+	for (j = 0, i = 1; i <= nread; i++)
 	{
 		if ((i - 1) == 0 && line[i - 1] != '\0')
 		{
