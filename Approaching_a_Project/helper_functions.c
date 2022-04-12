@@ -50,7 +50,7 @@ void sig_trap(int sig)
  * @sep: argument as a separator.
  * Return: Address of mallocd array of tokens.
  */
-char **input_tokenizer(char *line, ssize_t nread, const char *sep)
+char **input_tokenizer(char **line, ssize_t nread, const char *sep)
 {
 	char **clon_av = NULL;
 	ssize_t i = 0, j = 0;

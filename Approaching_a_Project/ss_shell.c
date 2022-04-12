@@ -26,7 +26,7 @@ int main(int ac, char **av, char **envp)
 		while (TRUE)
 		{
 			/* Check interactive or non interactive */
-			check_mode();
+			check_mode(nread);
 			/* Read the input */
 			nread = getline(&line, &len, stdin);
 			/* Catch the Interruption signal Ctrl+C and print the prompt again*/
@@ -34,7 +34,7 @@ int main(int ac, char **av, char **envp)
 			/* proces input */
 			clon_av = input_tokenizer(&line, nread, " ");
 			/* chk builtin cmd */
-			chk_builtin(clon_av[0], line, envp);
+			chk_builtin(clon_av, line, envp);
 			/* Check comand and fork and execve */
 			string = chk_fork_execve(&clon_av);
 			/* clean memory */
