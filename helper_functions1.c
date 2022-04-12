@@ -74,13 +74,13 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 			j++;
 		}
 	}
-	clon_av = malloc((j + 3) * sizeof(*clon_av));
+	clon_av = malloc((j + 2) * sizeof(*clon_av));
 	if (clon_av == NULL)
 	{
 		dprintf(2, "Error allocating memory for array of arguments\n");
 		return (clon_av);
 	}
-	clon_av[j] = &nullstr[0];
+	clon_av[j + 1] = &nullstr[0];
 	for (j = 0, i = 1; i <= nread; i++)
 	{
 		if ((i - 1) == 0 && line[i - 1] != '\0')
