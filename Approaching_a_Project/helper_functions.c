@@ -55,11 +55,11 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 	char **clon_av = NULL;
 	ssize_t i = 0, j = 0;
 
-	for (i = 0; i <= nread; i++)
+	for (i = 0; i < nread; i++)
 	{
 		if (*(line + i) == sep[0])
 			*(line + i) = '\0';
-		if (i == nread - 1)
+		if (i == nread)
 			*(line + i) = '\0';
 	}
 	for (j = 1, i = 1; i <= nread; i++)
@@ -69,7 +69,6 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 			j++;
 		}
 	}
-	/* Malloc pointers to strings */
 	clon_av = malloc((j + 1) * sizeof(*clon_av));
 	if (clon_av == NULL)
 	{
@@ -77,7 +76,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 		return (clon_av);
 	}
 	clon_av[j + 1] = NULL;
-	for (j = 0, i = 1; i <= nread; i++)
+	for (j = 0, i = 1; i < nread; i++)
 	{
 		if ((i - 1) == 0 && line[i - 1] != '\0')
 		{
