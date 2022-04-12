@@ -8,10 +8,8 @@ First, clone this repository (using git clone), and then run the compilation com
 To run any command, just follow the common syntax of the classic shell
 
 ## List of Built-In commands ##
-*
-*
-*
-
+* exit
+* env
 
 ## Flowchart ##
 
