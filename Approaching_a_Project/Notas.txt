@@ -1,0 +1,17 @@
+Cambiar forma de detectar modo ver más en detalle (isatty).
+
+*Correjir caso en que pase ruta completa al comando:
+Cambiar chequeo (arg using path -> stat? -> if not -> search in path: stat? -> no error)
+					-> yes -> fork execve wait)
+
+*Corregír builtin command luego de ejecutar limpia y vuelve al prompt.
+
+*Duplicar función para tokenizar en caso de args y path para contemplar diferencias de comportamiento.
+
+*Rerornar el exitstatus del proceso hijo
+
+*Corregír espacios y tabs previo al comando (estaba arreglado ver or qué no anda ahora).
+
+*Asegurar que no se realiza fork cuando no existe el comando
+
+
