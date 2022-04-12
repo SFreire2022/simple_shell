@@ -3,13 +3,17 @@
 /**
  * check_mode - Function to check interacting mode with the shell
  * @nread: Returned read value frim getline
+ * @clon_av: array to be freed if first element is == exit.
+ * @line: string to be freed if command is exit.
  */
-void check_mode(ssize_t nread)
+void check_mode(ssize_t nread, char **clon_av, char *line)
 {
 	if (nread == EOF)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
+		free(line);
+		free(clon_av);
 		exit(EXIT_SUCCESS);
 	}
 	if (isatty(STDIN_FILENO))
@@ -53,6 +57,7 @@ void sig_trap(int sig)
 char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 {
 	char **clon_av = NULL;
+	char *nullstr = NULL;
 	ssize_t i = 0, j = 0;
 
 	for (i = 0; i <= nread; i++)
@@ -69,13 +74,13 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 			j++;
 		}
 	}
-	clon_av = malloc((j + 1) * sizeof(*clon_av));
+	clon_av = malloc((j + 3) * sizeof(*clon_av));
 	if (clon_av == NULL)
 	{
 		dprintf(2, "Error allocating memory for array of arguments\n");
 		return (clon_av);
 	}
-	clon_av[j + 1] = (void *);
+	clon_av[j] = &nullstr[0];
 	for (j = 0, i = 1; i <= nread; i++)
 	{
 		if ((i - 1) == 0 && line[i - 1] != '\0')

@@ -25,7 +25,7 @@ int main(int ac, __attribute__((unused))char **av, char **envp)
 		while (TRUE)
 		{
 			/* Check interactive or non interactive */
-			check_mode(nread);
+			check_mode(nread, clon_av, line);
 			/* Read the input */
 			nread = getline(&line, &len, stdin);
 			/* Catch the Interruption signal Ctrl+C and print the prompt again*/

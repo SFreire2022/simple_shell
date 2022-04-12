@@ -9,9 +9,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <stddef.h>
 #define TRUE (1 == 1)
 
-void check_mode(ssize_t nread);
+void check_mode(ssize_t nread, char **clon_av, char *line);
 void sig_trap(int sig);
 void print_prompt(void);
 char **input_tokenizer(char *line, ssize_t nread, const char *sep);
