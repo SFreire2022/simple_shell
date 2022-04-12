@@ -7,13 +7,12 @@
  * @envp: array of environment vars.
  * Return: if ok return 0.
  */
-int main(int ac, char **av, char **envp)
+int main(int ac, __attribute__((unused))char **av, char **envp)
 {
 	char *line = NULL, *string = NULL;
 	size_t len = 0;
-	ssize_t nread = 0, i = 0, j;
+	ssize_t nread = 0;
 	char **clon_av = NULL;
-	char sep[] = " "; /* Separator */
 
 	if (ac > 1)
 	{
@@ -32,11 +31,11 @@ int main(int ac, char **av, char **envp)
 			/* Catch the Interruption signal Ctrl+C and print the prompt again*/
 			signal(SIGINT, sig_trap);
 			/* proces input */
-			clon_av = input_tokenizer(&line, nread, " ");
+			clon_av = input_tokenizer(line, nread, " ");
 			/* chk builtin cmd */
 			chk_builtin(clon_av, line, envp);
 			/* Check comand and fork and execve */
-			string = chk_fork_execve(&clon_av);
+			string = chk_fork_execve(clon_av);
 			/* clean memory */
 			free(line);
 			free(clon_av);
