@@ -10,8 +10,14 @@
 .SH DESCRIPTION
 - simple_shell is a command line interpreter as an implementation of shell in C.
 
+.SH INITIALIZATION
+
+- Simple shell will compile with the following:
+
+- gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
+
 .SH BUGS
 No known bugs.
 
 .SH AUTHOR
-Made by Martín De Francesco and Sebastián Freire
+Made by Martín De Francesco and Sebastián Freire.
