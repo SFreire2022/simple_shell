@@ -13,7 +13,7 @@ char *chk_command(char *command)
 	int length = strlen(env_path), i, flag = 0;
 
 	string = malloc(sizeof(char) * 1024);
-	path = input_tokenizer(&env_path, length, ":");
+	path = input_tokenizer(env_path, length, ":");
 	for (i = 0; path[i] != NULL; i++)
 	{
 		strcpy(string, path[i]);
