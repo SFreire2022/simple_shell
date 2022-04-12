@@ -81,13 +81,11 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 		if ((i - 1) == 0 && line[i - 1] != '\0')
 		{
 			clon_av[j] = &line[i - 1];
-			printf("token[%ld] -> %s\n", j, clon_av[j]);/*for debug*/
 			j++;
 		}
 		if (line[i - 1] == '\0' && line[i] != '\0')
 		{
 			clon_av[j] = &line[i];
-			printf("token[%ld] -> %s\n", j, clon_av[j]);/*for debug*/
 			j++;
 		}
 	}
@@ -97,6 +95,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 /**
  * chk_fork_execve - Function to check command and execute as a child process
  * @clon_av: array of command and arguments.
+ * @envp: array of env vars.
  * Return: 0 if ok.
  */
 char *chk_fork_execve(char **clon_av, char **envp)
