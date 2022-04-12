@@ -106,14 +106,14 @@ char *chk_fork_execve(char **clon_av, char **envp)
 
 	string = chk_command(clon_av[0]);
 	if (string == NULL)
-		dprintf(STDERR_FILENO, "%s: command not found", clon_av[0]);
+		dprintf(STDERR_FILENO, "%s: command not found\n", clon_av[0]);
 	else
 	{
 		pid = fork();
 		if (pid == 0)
 		{
 			if (execve(string, clon_av, envp) == -1)
-				dprintf(STDERR_FILENO, "%s: command not found", clon_av[0]);
+				dprintf(STDERR_FILENO, "%s: ERROR\n", clon_av[0]);
 		}
 		wait(&status);
 	}
