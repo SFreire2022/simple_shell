@@ -5,9 +5,10 @@
 - a standard command interpreter that reads commands from standard input and executes them.
 
 .SH SYNOPSIS
+.B ./hsh
 
 .SH DESCRIPTION
-
+- simple_shell is a command line interpreter as an implementation of shell in C.
 
 .SH BUGS
 No known bugs.
