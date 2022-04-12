@@ -74,7 +74,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 	if (clon_av == NULL)
 	{
 		dprintf(2, "Error allocating memory for array of arguments\n");
-		return (&clon_av);
+		return (clon_av);
 	}
 	for (j = 0, i = 1; i <= nread; i++)
 	{
@@ -91,7 +91,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 			j++;
 		}
 	}
-	return (&clon_av);
+	return (clon_av);
 }
 
 /**
