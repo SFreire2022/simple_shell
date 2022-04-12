@@ -45,4 +45,5 @@ int main(int ac, __attribute__((unused))char **av, char **envp)
 			len = 0;
 		}
 	}
+	return (0);
 }
