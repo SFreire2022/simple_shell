@@ -23,7 +23,7 @@ void print_prompt(void)
 {
 	char *str1 = getenv("USER");
 	char *str2 = "@";
-	char *str3 = getenv("HOST");
+	char *str3 = getenv("HOSTNAME");
 	char *str4 = ":";
 	char *str5 = getenv("PWD");
 	char *str6 = "$ ";
