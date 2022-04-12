@@ -23,15 +23,15 @@ char *chk_command(char *command)
 		{
 			flag = 1;
 			free(path);
-			return (&string);
+			return (string);
 		}
 	}
 	if (flag == 0)
 	{
 		free(string);
 		free(path);
-		return (NULL);
 	}
+	return (NULL);
 }
 
 /**

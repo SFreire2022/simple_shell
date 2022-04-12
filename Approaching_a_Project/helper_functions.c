@@ -118,5 +118,5 @@ char *chk_fork_execve(char **clon_av)
 		}
 		wait(&status);
 	}
-	return (&string);
+	return (string);
 }
