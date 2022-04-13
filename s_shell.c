@@ -25,21 +25,23 @@ int main(int ac, __attribute__((unused))char **av, char **envp)
 		while (TRUE)
 		{
 			/* Check interactive or non interactive */
-			check_mode(nread, clon_av, line);
+			check_mode();
 			/* Read the input */
 			nread = getline(&line, &len, stdin);
+			/* check input to detect EOF */
+			check_input(line, nread);
 			/* Catch the Interruption signal Ctrl+C and print the prompt again*/
 			signal(SIGINT, sig_trap);
 			/* proces input */
 			clon_av = input_tokenizer(line, nread, " ");
 			/* chk builtin cmd */
-			chk_builtin(clon_av, line, envp);
-			/* Check comand and fork and execve */
-			string = chk_fork_execve(clon_av, envp);
+			if (!chk_builtin(clon_av, line, envp))/* Check comand and fork and execve */
+				string = chk_fork_execve(clon_av, envp);
 			/* clean memory */
 			free(line);
 			free(clon_av);
-			free(string);
+			if (string != NULL)
+				free(string);
 			/* reset for realloc getline */
 			line = NULL;
 			len = 0;
