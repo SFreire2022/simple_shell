@@ -12,7 +12,7 @@ To run any command, just follow the common syntax of the classic shell
 * env
 
 ## Flowchart ##
-![fc](https://i.postimg.cc/brK6CPjj/flow.png)
+![fc](https://github.com/SFreire2022/simple_shell/blob/main/sShell_Grupo5_Mart%C3%ADn_Sebasti%C3%A1n.png)
 
 ### Made by ###
 * Martín De Francesco
