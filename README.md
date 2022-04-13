@@ -10,6 +10,7 @@ To run any command, just follow the common syntax of the classic shell
 ## List of Built-In commands ##
 * exit
 * env
+* help
 
 ## Flowchart ##
 ![fc](https://github.com/SFreire2022/simple_shell/blob/main/sShell_Grupo5_Mart%C3%ADn_Sebasti%C3%A1n.png)
