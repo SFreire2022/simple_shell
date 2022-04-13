@@ -10,9 +10,14 @@ char *chk_command(char *command)
 	struct stat st;
 	char **path = NULL;
 	char *env_path = getenv("PATH"), *string = NULL;
-	int length = strlen(env_path), i, flag = 0;
+	int length = strlen(env_path), i;
 
 	string = malloc(sizeof(char) * 1024);
+	if (stat(command, &st) == 0)
+	{
+		strcpy(string, command);
+		return (string);
+	}
 	path = input_tokenizer(env_path, length, ":");
 	for (i = 0; path[i] != NULL; i++)
 	{
@@ -21,16 +26,12 @@ char *chk_command(char *command)
 		strcat(string, command);
 		if (stat(string, &st) == 0)
 		{
-			flag = 1;
 			free(path);
 			return (string);
 		}
 	}
-	if (flag == 0)
-	{
-		free(string);
-		free(path);
-	}
+	free(string);
+	free(path);
 	return (NULL);
 }
 
@@ -39,8 +40,9 @@ char *chk_command(char *command)
  * @clon_av: array to be freed if first element is == exit.
  * @line: string to be freed if command is exit.
  * @envp: Array of environment vars.
+  * Return: 1 if builtin command was detected and executed.
  */
-void chk_builtin(char **clon_av, char *line, char **envp)
+int chk_builtin(char **clon_av, char *line, char **envp)
 {
 	int i = 0;
 
@@ -53,6 +55,29 @@ void chk_builtin(char **clon_av, char *line, char **envp)
 	if (strcmp(clon_av[0], "env") == 0)
 	{
 		for (i = 0; envp[i]; i++)
-			dprintf(STDERR_FILENO, "%s\n", envp[i]);
+			dprintf(STDOUT_FILENO, "%s\n", envp[i]);
+		/* avoid try to exec bin */
+		return (1);
+	}
+	if (strcmp(clon_av[0], "help") == 0)
+	{
+		dprintf(STDOUT_FILENO, "This is the help example\n");
+		/* avoid try to exec bin */
+		return (1);
+	}
+	return (0);
+}
+
+/**
+ * check_input - Function to check input to detect EOF, free buffer and exit
+ * @line: buffer to be freed if EOF was detected
+ * @nread: Returned read value from getline
+ */
+void check_input(char *line, ssize_t nread)
+{
+	if (nread == EOF)
+	{
+		free(line);
+		exit(EXIT_SUCCESS);
 	}
 }
