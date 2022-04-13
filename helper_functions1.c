@@ -2,20 +2,9 @@
 
 /**
  * check_mode - Function to check interacting mode with the shell
- * @nread: Returned read value frim getline
- * @clon_av: array to be freed if first element is == exit.
- * @line: string to be freed if command is exit.
  */
-void check_mode(ssize_t nread, char **clon_av, char *line)
+void check_mode(void)
 {
-	if (nread == EOF)
-	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
-		free(line);
-		free(clon_av);
-		exit(EXIT_SUCCESS);
-	}
 	if (isatty(STDIN_FILENO))
 		print_prompt();
 }
@@ -64,7 +53,7 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 	{
 		if (*(line + i) == sep[0])
 			*(line + i) = '\0';
-		if (i == nread - 1)
+		if ((i == nread - 1) && *(line + i) == '\n')
 			*(line + i) = '\0';
 	}
 	for (j = 1, i = 1; i <= nread; i++)
@@ -74,13 +63,13 @@ char **input_tokenizer(char *line, ssize_t nread, const char *sep)
 			j++;
 		}
 	}
-	clon_av = malloc((j + 2) * sizeof(*clon_av));
+	clon_av = malloc((j + 1) * sizeof(*clon_av));
 	if (clon_av == NULL)
 	{
 		dprintf(2, "Error allocating memory for array of arguments\n");
 		return (clon_av);
 	}
-	clon_av[j + 1] = &nullstr[0];
+	clon_av[j] = &nullstr[0];
 	for (j = 0, i = 1; i <= nread; i++)
 	{
 		if ((i - 1) == 0 && line[i - 1] != '\0')
@@ -111,7 +100,10 @@ char *chk_fork_execve(char **clon_av, char **envp)
 
 	string = chk_command(clon_av[0]);
 	if (string == NULL)
+	{
 		dprintf(STDERR_FILENO, "%s: command not found\n", clon_av[0]);
+		return (NULL);
+	}
 	else
 	{
 		pid = fork();
